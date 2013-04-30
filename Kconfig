@@ -1,0 +1,8 @@
+#Process Integrity Evaluator
+#Authored By Bill Zeng
+
+config PIE
+bool «Process Integrity Evaluator»
+default y
+help
+This is an integrity evaluator assigned as a coursework for the undergraduate's final.
