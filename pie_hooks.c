@@ -136,6 +136,8 @@ static int pie_inode_init_security(struct inode *inode, struct inode *dir,
 
 static int pie_inode_create(struct inode *dir, struct dentry *dentry, int mask)
 {
+    printk(KERN_ALERT "You shall not pass!\n");
+    return -EACCES;
     return 0;
 }
 

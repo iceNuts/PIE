@@ -182,7 +182,7 @@ static __init int pie_init(void)
 
 	//Start Atomic Cache list & TPM things
     
-    printk(KERN_ALERT "PIE started");
+    printk(KERN_ALERT "PIE started\n");
 	
     return 0;
 }
