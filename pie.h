@@ -4,6 +4,7 @@
 #include <linux/init.h>
 #include <linux/kd.h>
 #include <linux/kernel.h>
+#include <linux/module.h>       /* Needed by all modules */
 #include <linux/tracehook.h>
 #include <linux/errno.h>
 #include <linux/ext2_fs.h>
