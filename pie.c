@@ -91,11 +91,6 @@ static int pie_sb_copy_data(char *orig, char *copy)
     return 0;
 }
 
-static int pie_sb_remount(struct super_block *sb, void *data)
-{
-    return 0;
-}
-
 static int pie_sb_kern_mount(struct super_block *sb, int flags, void *data)
 {
     return 0;
@@ -220,11 +215,6 @@ static int pie_inode_getattr(struct vfsmount *mnt, struct dentry *dentry)
     return 0;
 }
 
-static int pie_inode_setotherxattr(struct dentry *dentry, const char *name)
-{
-    return 0;
-}
-
 static int pie_inode_setxattr(struct dentry *dentry, const char *name,
                   const void *value, size_t size, int flags)
 {
@@ -277,11 +267,6 @@ static void pie_inode_getsecid(const struct inode *inode, u32 *secid)
 
 /* file security operations */
 
-static int pie_revalidate_file_permission(struct file *file, int mask)
-{
-    return 0;
-}
-
 static int pie_file_permission(struct file *file, int mask)
 {
     return 0;
@@ -299,11 +284,6 @@ static void pie_file_free_security(struct file *file)
 
 static int pie_file_ioctl(struct file *file, unsigned int cmd,
                   unsigned long arg)
-{
-    return 0;
-}
-
-static int file_map_prot_check(struct file *file, unsigned long prot, int shared)
 {
     return 0;
 }
@@ -464,79 +444,6 @@ static void pie_task_to_inode(struct task_struct *p,
                   struct inode *inode)
 {
 
-}
-
-
-/* socket security operations */
-
-static int pie_socket_create(int family, int type,
-                 int protocol, int kern)
-{
-    return 0;
-}
-
-static int pie_socket_post_create(struct socket *sock, int family,
-                      int type, int protocol, int kern)
-{
-    return 0;
-}
-
-static int pie_socket_bind(struct socket *sock, struct sockaddr *address, int addrlen)
-{
-    return 0;
-}
-
-static int pie_socket_connect(struct socket *sock, struct sockaddr *address, int addrlen)
-{
-    return 0;
-}
-
-static int pie_socket_listen(struct socket *sock, int backlog)
-{
-    return 0;
-}
-
-static int pie_socket_accept(struct socket *sock, struct socket *newsock)
-{
-    return 0;
-}
-
-static int pie_socket_sendmsg(struct socket *sock, struct msghdr *msg,
-                  int size)
-{
-    return 0;
-}
-
-static int pie_socket_recvmsg(struct socket *sock, struct msghdr *msg,
-                  int size, int flags)
-{
-    return 0;
-}
-
-static int pie_socket_getsockname(struct socket *sock)
-{
-    return 0;
-}
-
-static int pie_socket_getpeername(struct socket *sock)
-{
-    return 0;
-}
-
-static int pie_socket_setsockopt(struct socket *sock, int level, int optname)
-{
-    return 0;
-}
-
-static int pie_socket_getsockopt(struct socket *sock, int level,
-                     int optname)
-{
-    return 0;
-}
-
-static int pie_socket_shutdown(struct socket *sock, int how)
-{
-    return 0;
 }
 
 static int pie_socket_unix_stream_connect(struct sock *sock,
@@ -867,8 +774,6 @@ static int pie_inode_getsecctx(struct inode *inode, void **ctx, u32 *ctxlen)
 //security structure
 
 static struct security_operations pie_ops = {
-        .name =                         "pie",
- 
         .ptrace_access_check            =               pie_ptrace_access_check,
         .ptrace_traceme                         =               pie_ptrace_traceme,
         .capget                                         =               pie_capget,
@@ -890,7 +795,6 @@ static struct security_operations pie_ops = {
         .sb_alloc_security                      =               pie_sb_alloc_security,
         .sb_free_security                       =               pie_sb_free_security,
         .sb_copy_data                           =               pie_sb_copy_data,
-        .sb_remount                             =               pie_sb_remount,
         .sb_kern_mount                          =               pie_sb_kern_mount,
         .sb_show_options                        =               pie_sb_show_options,
         .sb_statfs                                      =               pie_sb_statfs,
@@ -999,41 +903,6 @@ static struct security_operations pie_ops = {
         .inode_notifysecctx             =               pie_inode_notifysecctx,
         .inode_setsecctx                        =               pie_inode_setsecctx,
         .inode_getsecctx                        =               pie_inode_getsecctx,
- 
-        .unix_stream_connect            =               pie_socket_unix_stream_connect,
-        .unix_may_send                          =               pie_socket_unix_may_send,
- 
-        .socket_create                          =               pie_socket_create,
-        .socket_post_create             =               pie_socket_post_create,
-        .socket_bind                            =               pie_socket_bind,
-        .socket_connect                         =               pie_socket_connect,
-        .socket_listen                          =               pie_socket_listen,
-        .socket_accept                          =               pie_socket_accept,
-        .socket_sendmsg                         =               pie_socket_sendmsg,
-        .socket_recvmsg                         =               pie_socket_recvmsg,
-        .socket_getsockname             =               pie_socket_getsockname,
-        .socket_getpeername                     =               pie_socket_getpeername,
-        .socket_getsockopt                      =               pie_socket_getsockopt,
-        .socket_setsockopt                      =               pie_socket_setsockopt,
-        .socket_shutdown                        =               pie_socket_shutdown,
-        .socket_sock_rcv_skb            =               pie_socket_sock_rcv_skb,
-        .socket_getpeersec_stream       =               pie_socket_getpeersec_stream,
-        .socket_getpeersec_dgram        =               pie_socket_getpeersec_dgram,
-        .sk_alloc_security                      =               pie_sk_alloc_security,
-        .sk_free_security                       =               pie_sk_free_security,
-        .sk_clone_security                      =               pie_sk_clone_security,
-        .sk_getsecid                            =               pie_sk_getsecid,
-        .sock_graft                             =               pie_sock_graft,
-        .inet_conn_request                      =               pie_inet_conn_request,
-        .inet_csk_clone                         =               pie_inet_csk_clone,
-        .inet_conn_established          =               pie_inet_conn_established,
-        .secmark_relabel_packet         =               pie_secmark_relabel_packet,
-        .secmark_refcount_inc           =               pie_secmark_refcount_inc,
-        .secmark_refcount_dec           =               pie_secmark_refcount_dec,
-        .req_classify_flow                      =               pie_req_classify_flow,
-        .tun_dev_create                         =               pie_tun_dev_create,
-        .tun_dev_post_create            =               pie_tun_dev_post_create,
-        .tun_dev_attach                         =               pie_tun_dev_attach,
 };
 
 //init
