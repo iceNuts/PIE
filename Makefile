@@ -3,6 +3,6 @@
 # Authored By Bill Zeng
 #
 
-obj-m := pie.o 
+obj-m += pie.o 
 
-pie-objs := pie_hooks.o pie_init.o
+pie-y := pie_hooks.o
