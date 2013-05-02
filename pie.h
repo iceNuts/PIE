@@ -72,8 +72,3 @@ MODULE_VERSION("alpha");
 //globals
 extern struct security_operations *security_ops;
 
-
-
-
-
-

@@ -4,5 +4,3 @@
 #
 
 obj-m += pie.o 
-
-pie-y := pie_hooks.o
