@@ -8,9 +8,9 @@
 #include <linux/err.h>
 
 
-#define TPM_CHIP_NUM TPM_ANY_NUM;
+#define TPM_CHIP_NUM TPM_ANY_NUM
 //Assume pcr 12 as storage slot
-#define TPM_PCR_NUM 12; 
+#define TPM_PCR_NUM 12
 
 
 static int pie_pcr_extend(const u8 *hash);
