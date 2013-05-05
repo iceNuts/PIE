@@ -133,8 +133,6 @@ static int pie_inode_init_security(struct inode *inode, struct inode *dir,
 
 static int pie_inode_create(struct inode *dir, struct dentry *dentry, int mask)
 {
-    printk(KERN_ALERT "You shall not pass!\n");
-    return -EACCES;
     return 0;
 }
 
@@ -292,6 +290,7 @@ static int pie_file_mmap(struct file *file, unsigned long reqprot,
                  unsigned long prot, unsigned long flags,
                  unsigned long addr, unsigned long addr_only)
 {
+    
     return 0;
 }
 
