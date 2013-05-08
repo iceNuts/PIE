@@ -57,7 +57,6 @@
 #include <linux/selinux.h>
 #include <linux/mutex.h>
 #include <linux/posix-timers.h>
-#include <linux/syslog.h>
 #include <linux/user_namespace.h>
 
 //basic definition
