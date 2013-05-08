@@ -72,3 +72,5 @@ MODULE_VERSION("alpha");
 //globals
 extern struct security_operations *security_ops;
 
+#define DIGEST_SIZE 20
+

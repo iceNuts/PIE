@@ -4,3 +4,5 @@
 #
 
 obj-m += pie.o 
+
+piy-y := pie_tpm.o pie_cache.o
