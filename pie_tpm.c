@@ -1,5 +1,11 @@
-#include "pie_tpm.h"
-
+#include "pie.h"
+#include <linux/module.h>
+#include <linux/tpm.h>
+#include <linux/rculist.h>
+#include <linux/crypto.h>
+#include <linux/scatterlist.h>
+#include <linux/file.h>
+#include <linux/err.h>
 
 static int pie_pcr_extend(const u8 *hash)
 {

@@ -1,4 +1,6 @@
-#include "pie_cache.h"
+#include "pie.h"
+#include <linux/module.h>
+#include <linux/rculist.h>
 
 //Definitions
 struct  pie_table

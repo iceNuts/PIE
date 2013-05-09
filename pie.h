@@ -59,9 +59,6 @@
 #include <linux/posix-timers.h>
 #include <linux/user_namespace.h>
 
-#include "pie_tpm.h"
-#include "pie_cache.h"
-
 //basic definition
 #define MODULE_NAME "pie"
 
@@ -75,4 +72,64 @@ MODULE_VERSION("alpha");
 extern struct security_operations *security_ops;
 
 #define DIGEST_SIZE 20
+
+
+//pie_cache
+
+//A list as sha1 key-value pair hash table
+//Use RCU mechanism to gurantee write-read collision
+
+//Mutex lock vs Spin lock ? The previous would make others sleep then waken up by alert
+//But the latter would keep others request for control over and over again.
+//Mutex is fit for pcr extend as it takes a long time.
+
+//Definitions
+struct  pie_table
+{
+    /* data */
+    struct list_head list;
+};
+
+struct pie_table_entry
+{
+    /* data */
+    u8 *digest;
+    struct list_head latter;
+};
+
+
+//Lookup function
+static int pie_table_lookup(u8 *digest);
+//Add entry
+int pie_add_entry(u8 *digest);
+
+
+
+//pie_tpm
+#define TPM_CHIP_NUM TPM_ANY_NUM
+//Assume pcr 12 as storage slot
+#define TPM_PCR_NUM 12
+
+
+static int pie_pcr_extend(const u8 *hash);
+static int pie_pcr_read(u8 *res_buf);
+static int pie_calc_hash(struct file *file, char *digest);
+static int pie_calc_list_hash(void *list, char *digest);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
