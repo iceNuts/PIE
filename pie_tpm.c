@@ -19,7 +19,9 @@ static int pie_pcr_read(u8 *res_buf)
     if(tpm_pcr_read(TPM_ANY_NUM, TPM_PCR_NUM, res_buf) != 0)
     {
         pr_err("PIE_PCR_READ: error TPM communication");
+        return -1;
     }
+    return 0;
 }
 
 //Calc file SHA1 Hash
@@ -51,7 +53,7 @@ static int pie_calc_hash(struct file *file, char *digest)
     char *rbuf;
     int rc;
 
-    rc = init_desc(&desc);
+    rc = init_hash(&desc);
     if (rc != 0)
         return rc;
 
