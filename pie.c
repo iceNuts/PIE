@@ -290,7 +290,7 @@ static int pie_file_mmap(struct file *file, unsigned long reqprot,
                  unsigned long prot, unsigned long flags,
                  unsigned long addr, unsigned long addr_only)
 {
-    
+
     return 0;
 }
 
@@ -915,7 +915,7 @@ static __init int pie_init(void)
 	//Start Atomic Cache list & TPM things
     
     printk(KERN_ALERT "PIE started\n");
-	
+
     return 0;
 }
 

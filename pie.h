@@ -59,6 +59,9 @@
 #include <linux/posix-timers.h>
 #include <linux/user_namespace.h>
 
+#include "pie_tpm.h"
+#include "pie_cache.h"
+
 //basic definition
 #define MODULE_NAME "pie"
 
