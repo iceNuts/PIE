@@ -163,10 +163,7 @@ source security/selinux/Kconfig
 source security/smack/Kconfig
 source security/tomoyo/Kconfig
 
-source security/pie/Kconfig
-
-
-source security/integrity/ima/Kconfig
+source security/integrity/pie/Kconfig
 
 
 endmenu
